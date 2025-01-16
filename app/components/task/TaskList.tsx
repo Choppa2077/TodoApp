@@ -84,18 +84,17 @@ const TaskList = () => {
         {filteredTasks.map((task) => (
           <TaskCard
             key={task.id}
+            userId={task.userId}
             title={task.title}
             id={task.id}
             completed={task.completed}
             onToggle={onToggle}
             onDelete={onDelete}
+            description={task.description}
           />
         ))}
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
-      </CardFooter>
+      
     </Card>
   );
 };

@@ -1,25 +1,45 @@
 'use client';
 
-import { RxCross2 } from "react-icons/rx";
+import { RxCross2 } from 'react-icons/rx';
 import DeleteAlertDialog from '../ui/DeleteAlertDialog';
+import { useTaskStore } from '@/app/store/taskStore';
+import { stat } from 'fs';
+import { ITask } from '@/app/types/task';
 
 interface ITaskCardProps {
+  userId: number;
   title: string;
   id: number;
   completed: boolean;
   onToggle: (id: number) => void;
   onDelete: (id: number) => void;
+  description?: string;
 }
 
 const TaskCard: React.FC<ITaskCardProps> = ({
+  userId,
   title,
   id,
   completed,
   onToggle,
   onDelete,
+  description,
 }) => {
+  // const selectedTask = useTaskStore((state) => state.selectedTask);
+  const setSelectedTask = useTaskStore((state) => state.setSelectedTask);
+
+  const onTaskClick = (task: ITask) => {
+    setSelectedTask({
+      userId: task.userId,
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      completed: task.completed,
+    });
+  };
+
   return (
-    <div>
+    <div onClick={() => onTaskClick({userId, id, title, description, completed})}>
       <div
         className={`flex items-center justify-between pt-4 pb-4 px-2 rounded-lg transition-colors duration-300 hover:bg-[rgb(37,37,37)] ${
           completed ? 'bg-[rgb(57,57,57)]' : 'bg-[rgb(22,22,22)]'

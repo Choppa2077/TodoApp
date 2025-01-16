@@ -1,5 +1,6 @@
+'use client';
+
 import { useTaskStore } from '@/app/store/taskStore';
-import { ITask } from '@/app/types/task';
 import {
   Select,
   SelectContent,
@@ -7,12 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
-
-// interface ITaskFilterProps {
-//   tasks: ITask[];
-//   setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
-// }
 
 const TaskFilters = () => {
   const setFilter = useTaskStore((state) => state.setFilter);
