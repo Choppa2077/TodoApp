@@ -3,7 +3,6 @@
 import { RxCross2 } from 'react-icons/rx';
 import DeleteAlertDialog from '../ui/DeleteAlertDialog';
 import { useTaskStore } from '@/app/store/taskStore';
-import { stat } from 'fs';
 import { ITask } from '@/app/types/task';
 
 interface ITaskCardProps {

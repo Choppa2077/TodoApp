@@ -1,5 +1,3 @@
-import TaskList from './components/task/TaskList';
-import TaskView from './components/task/TaskView';
 import TaskFilters from './components/task/TaskFilters';
 import AddTaskForm from './components/task/AddTaskForm';
 import TasksPage from './components/task/TasksPage';
