@@ -41,17 +41,18 @@ Ensure you have the following installed:
    git clone <repository-url>
    cd <project-directory>
 2. Install dependencies 
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
+    # npm install
+    or
+    # yarn install 
+    or
+    # pnpm install
 3. Start the development server
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
+   
+    # npm run dev
+    or
+    # yarn dev
+    or
+    # pnpm dev
 4. Open http://localhost:3000 in your   browser to see the app.
     # npm run dev
     or
