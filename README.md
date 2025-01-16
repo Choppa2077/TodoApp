@@ -60,7 +60,8 @@ Ensure you have the following installed:
     or
     # pnpm dev
 
-Folder structure
+## Folder structure
+
 📂 src
 ├── 📂 app         # Next.js app directory
 ├── 📂 components  # Reusable components
