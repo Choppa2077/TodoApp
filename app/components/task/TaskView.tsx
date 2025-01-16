@@ -34,7 +34,9 @@ const TaskView = () => {
     mode: 'onChange',
   });
 
-  const selectedTaskSync = useTaskStore.getState().tasks.find((task) => task.id === selectedTask?.id);
+  const selectedTaskSync = useTaskStore
+    .getState()
+    .tasks.find((task) => task.id === selectedTask?.id);
   console.log(selectedTaskSync?.completed);
 
   useEffect(() => {
@@ -43,31 +45,30 @@ const TaskView = () => {
         title: selectedTask.title,
         description: selectedTask.description,
       });
-      
     }
   }, [selectedTask, form]);
 
-  // Обновление задачи
   const onSubmit = (data: TaskFormValues) => {
     if (selectedTask) {
-      const newTask = { ...selectedTask, ...data };
+      const currentTaskState = useTaskStore
+        .getState()
+        .tasks.find((task) => task.id === selectedTask.id);
 
-      // Обновляем задачу
+      if (!currentTaskState) return;
+
+      const newTask = {
+        ...currentTaskState,
+        ...data,
+      };
+
       updateTask(newTask);
 
-      // Синхронизируем selectedTask сразу
-      const allTasks = useTaskStore.getState().tasks;
-      const syncedTask = allTasks.find((task) => task.id === newTask.id);
-
-      if (syncedTask) {
-        setSelectedTask(syncedTask);
-      }
+      setSelectedTask(newTask);
 
       setIsEdit(false);
     }
   };
 
-  // Закрытие формы редактирования
   const closeEditForm = () => {
     setIsEdit(false);
     form.reset({
@@ -79,7 +80,7 @@ const TaskView = () => {
   if (!selectedTask) {
     return (
       <Card
-        className="w-[550px] rounded-2xl border-none"
+        className=" rounded-2xl border-none"
         style={{ backgroundColor: 'rgb(22, 22, 22)' }}
       >
         <CardHeader>
@@ -91,7 +92,7 @@ const TaskView = () => {
 
   return (
     <Card
-      className="w-[550px] rounded-2xl border-none"
+      className=" rounded-2xl border-none"
       style={{ backgroundColor: 'rgb(22, 22, 22)' }}
     >
       <CardHeader>
@@ -108,7 +109,7 @@ const TaskView = () => {
               />
             </div>
             <div>
-              <label className="text-white block mb-2">Task Description</label>
+              <label className="text-white block mb-2 truncate w-full">Task Description</label>
               <Textarea
                 {...form.register('description')}
                 placeholder="Enter task description"

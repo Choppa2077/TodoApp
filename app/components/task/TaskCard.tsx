@@ -25,7 +25,6 @@ const TaskCard: React.FC<ITaskCardProps> = ({
   onDelete,
   description,
 }) => {
-  // const selectedTask = useTaskStore((state) => state.selectedTask);
   const setSelectedTask = useTaskStore((state) => state.setSelectedTask);
 
   const onTaskClick = (task: ITask) => {

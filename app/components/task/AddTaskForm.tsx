@@ -1,6 +1,5 @@
 'use client';
 
-
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -23,17 +22,17 @@ import {
   } from "@/components/ui/dialog"
   
 import { useState } from 'react';
-import { useTaskStore } from '@/app/store/taskStore';
 import { ITask } from '@/app/types/task';
 import { TaskFormValues } from '@/app/types/TaskFormValues';
 import { taskSchema } from '@/app/types/TaskFormValues';
+import { useAddTask } from '@/app/hooks/useAddTask';
 
 export default function AddTaskForm() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const addTask = useTaskStore((state) => state.addTask);
+  const addTask = useAddTask()
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskSchema),
-    mode: 'onChange', // Обновляет `isValid` в реальном времени
+    mode: 'onChange', 
   });
 
   const onSubmit = (data: TaskFormValues) => {

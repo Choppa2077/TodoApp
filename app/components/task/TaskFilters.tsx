@@ -17,10 +17,10 @@ const TaskFilters = () => {
   };
  
   return (
-    <div>
+    <div className='p-4'>
       <Select defaultValue="all"  onValueChange={(value) => handleFilterChange(value as 'all' | 'completed' | 'incomplete')}>
         <SelectTrigger
-          className="w-[180px]  text-white border-none"
+          className=" text-white border-none"
           style={{ backgroundColor: 'rgb(22, 22, 22)' }}
         >
           <SelectValue placeholder="All" />
