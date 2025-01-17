@@ -1,20 +1,13 @@
-import TaskFilters from './components/task/TaskFilters';
-import AddTaskForm from './components/task/AddTaskForm';
-import TasksPage from './components/task/TasksPage';
+import { fetchTasks } from '@/app/utils/fetchTasks';
+import TaskWrapper from './components/task/TaskWrapper';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 
-export default function Home() {
- 
-  return (
-    <div className="flex flex-col items-center justify-center">
-      <div className=" w-3/4 h-screen py-10">
-        <header className='flex justify-between items-center w-1/6'>
-          <TaskFilters />
-          <AddTaskForm />
-        </header>
-        <main className="flex justify-between mt-5">
-        <TasksPage />
-        </main>
-      </div>
-    </div>
-  );
+export default async function Home() {
+  console.log("Fetching tasks on the server...");
+  const queryClient = new QueryClient();
+  // Предзагрузка задач на сервере
+  await queryClient.prefetchQuery({ queryKey: ['tasks'], queryFn: fetchTasks });
+  const dehydratedState = dehydrate(queryClient);
+
+  return <TaskWrapper dehydratedState={dehydratedState} />;
 }
