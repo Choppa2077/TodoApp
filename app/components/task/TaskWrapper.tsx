@@ -1,14 +1,12 @@
 'use client';
-import {
-  HydrationBoundary,
-  QueryClientProvider,
-} from '@tanstack/react-query';
+import { HydrationBoundary, DehydratedState, QueryClientProvider } from '@tanstack/react-query';
+
 import TaskFilters from './TaskFilters';
 import AddTaskForm from './AddTaskForm';
 import TasksPage from './TasksPage';
 import getQueryClient from '@/app/utils/getQueryClient';
 
-export default function TaskWrapper({ dehydratedState }: any) {
+export default function TaskWrapper({ dehydratedState }: { dehydratedState: DehydratedState }) {
   const queryClient = getQueryClient();
   return (
     <QueryClientProvider client={queryClient}>
